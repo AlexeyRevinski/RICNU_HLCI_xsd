@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<xs:schema	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="https://www.w3schools.com"
+			xmlns="https://www.w3schools.com"
+			elementFormDefault="qualified">
+	
+	<xs:include schemaLocation="ricnuplan_include.xsd"/>
+	
+	
+	<!--============================================================-->
+	<!--                 StateMachine Defintion                     -->
+	<!--============================================================-->
+	<xs:complexType 	name="fsmType">
+		<xs:sequence>
+			<xs:element			name="mode" 		type="modeType"		minOccurs="1"	maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute		name="defmode"			type="xs:int"/>
+	</xs:complexType>
+	
+	
+	<!--============================================================-->
+	<!--                     Mode Definition                        -->
+	<!--============================================================-->
+	
+	<xs:complexType 	name="modeType">
+		<xs:complexContent>
+			<xs:extension		base="idType">
+				<xs:sequence>
+					<xs:element			name="state" 		type="stateType"	minOccurs="1"	maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute		name="tag"			type="xs:string"/>	
+				<xs:attribute		name="defstate"		type="xs:int"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	
+	<!--============================================================-->
+	<!--                    State Definition                        -->
+	<!--============================================================-->
+	
+	<xs:complexType 	name="stateType">
+		<xs:complexContent>
+			<xs:extension		base="idType">
+				<xs:sequence>
+					<xs:element			name="control"			type="controlsType" minOccurs="1"/>
+					<xs:element			name="transition"		type="transitionType" minOccurs="1"	maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute		name="tag"			type="xs:string"/>	
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>	
+	
+</xs:schema> 

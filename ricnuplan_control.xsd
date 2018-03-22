@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+
+<xs:schema	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="https://www.w3schools.com"
+			xmlns="https://www.w3schools.com"
+			elementFormDefault="qualified">
+	
+	<xs:include schemaLocation="ricnuplan_include.xsd"/>
+			
+	<xs:complexType	name="controlsType">
+		<xs:choice>
+			<xs:element		name="control_non"		type="controlNonType"/>
+			<xs:element		name="control_opn"		type="controlPositionType"/>
+			<xs:element		name="control_pos"		type="controlPositionType"/>
+			<xs:element		name="control_cur"		type="controlPositionType"/>
+			<xs:element		name="control_imp"		type="controlImpedanceType"/>
+			<xs:element		name="control_cst"		type="controlPositionType"/>
+		</xs:choice>
+	</xs:complexType>
+	
+	
+	<xs:complexType	name="controlNonType">
+		<xs:sequence>
+			<xs:element		name="ctrl" type="stateControlNonType"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	<xs:complexType	name="controlPositionType">
+		<xs:sequence>
+			<xs:element		name="sp" type="stateControlType"/>
+			<xs:element		name="ki" type="stateControlType"/>
+			<xs:element		name="kp" type="stateControlType"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType	name="controlImpedanceType">
+		<xs:sequence>
+			<xs:element		name="k" type="stateControlTypeTEST"/>
+			<xs:element		name="b" type="stateControlTypeTEST"/>
+			<xs:element		name="e" type="stateControlTypeTEST"/>
+			<xs:element		name="kp" type="stateControlTypeTEST"/>
+			<xs:element		name="ki" type="stateControlTypeTEST"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	
+	<xs:complexType name="stateControlNonType">
+		<xs:attribute	name="default"	type="xs:boolean" use="required"/>
+	</xs:complexType>
+	
+	<xs:complexType name="stateControlTypeTEST">
+		<xs:choice>
+			<xs:element		name="function_constant">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="constant_value">
+							<xs:complexType>
+								<xs:attribute	name="value"	type="xs:decimal" use="required"/>
+								<xs:attribute	name="gain"		type="xs:decimal" default="1"/>
+								<xs:attribute	name="offset"	type="xs:decimal" default="0"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	
+	
+	<xs:complexType	name="stateControlType">
+			<xs:choice>
+				<xs:element		name="state_f_constant">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="constant_value">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element		name="constant">
+											<xs:complexType>
+												<xs:attribute	name="value"	type="xs:decimal" use="required"/>
+												<xs:attribute	name="gain"		type="xs:decimal" default="1"/>
+												<xs:attribute	name="offset"	type="xs:decimal" default="0"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute		name="code"		type="xs:integer"	default="1"/>
+									<xs:attribute		name="gain"		type="xs:decimal"	default="1"/>
+									<xs:attribute		name="offset"	type="xs:decimal"	default="0"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element		name="state_f_linear_ramp">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="start_value"/>
+							<xs:element name="target_value"/>
+							<xs:element name="time"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element		name="state_f_latch">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="latch_value"/>
+							<xs:element name="min_limit"/>
+							<xs:element name="max_limit"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element		name="state_f_exp_ramp">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="start_value"/>
+							<xs:element name="exp_gain"/>
+							<xs:element name="exp_base"/>
+							<xs:element name="min_limit"/>
+							<xs:element name="max_limit"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element		name="state_f_mult_sum">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="multiplier"/>
+							<xs:element name="addend1"/>
+							<xs:element name="addend2"/>
+							<xs:element name="min_limit"/>
+							<xs:element name="max_limit"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element		name="state_f_custom">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="input1"/>
+							<xs:element name="input2"/>
+							<xs:element name="input3"/>
+							<xs:element name="input4"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+	</xs:complexType>
+			
+</xs:schema> 

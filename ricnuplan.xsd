@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="https://www.w3schools.com"
+			xmlns="https://www.w3schools.com"
+			elementFormDefault="qualified">
+	
+	<xs:include schemaLocation="ricnuplan_include.xsd"/>
+
+	<!--============================================================-->
+	<!--                       ROOT ELEMENT                         -->
+	<!--============================================================-->
+	
+	<xs:element		name="ricnuplan">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element		name="user"			type="profileType"		minOccurs="1"	maxOccurs="1"/>
+				<xs:choice>
+					<xs:element		name="patient"		type="profileType"/>
+					<xs:element		name="test"			type="xs:string"/>
+				</xs:choice>
+				<xs:element		name="fsm" type="fsmType"	minOccurs="1"	maxOccurs="1"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema> 

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<xs:schema	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="https://www.w3schools.com"
+			xmlns="https://www.w3schools.com"
+			elementFormDefault="qualified">
+	
+	<xs:include schemaLocation="ricnuplan_structures.xsd"/>
+	<xs:include schemaLocation="ricnuplan_profile.xsd"/>
+	<xs:include schemaLocation="ricnuplan_transition.xsd"/>
+	<xs:include schemaLocation="ricnuplan_control.xsd"/>
+	<xs:include schemaLocation="ricnuplan_other.xsd"/>
+	<xs:include	schemaLocation="ricnuplan_generic.xsd"/>
+
+</xs:schema> 

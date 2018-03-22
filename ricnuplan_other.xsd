@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+
+<xs:schema	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="https://www.w3schools.com"
+			xmlns="https://www.w3schools.com"
+			elementFormDefault="qualified">
+	
+	<xs:include schemaLocation="ricnuplan_include.xsd"/>
+	
+	<!--============================================================-->
+	<!--                 Controller Definitions                     -->
+	<!--============================================================-->
+	
+	<!-- Controller Type -->
+	<xs:complexType		name="functionType">
+		<xs:choice>
+			<xs:element		name="opn"	type="opnControlType"/>
+			<xs:element		name="cur"	type="curControlType"/>
+			<xs:element		name="pos"	type="posControlType"/>
+			<xs:element		name="imp"	type="impControlType"/>
+		</xs:choice>
+	</xs:complexType>
+	
+	<!-- Open Controller Definition -->
+	<xs:complexType 	name="opnControlType">
+		<xs:attribute		name="sp"	type="xs:decimal"	use="required"/>
+	</xs:complexType>
+	
+	<!-- Current Controller Definition -->
+	<xs:complexType 	name="curControlType">
+		<xs:attribute		name="sp"	type="xs:decimal"	use="required"/>
+		<xs:attribute		name="ki"	type="xs:decimal"	use="required"/>
+		<xs:attribute		name="kp"	type="xs:decimal"	use="required"/>
+	</xs:complexType>
+	
+	<!-- Position Controller Definition -->
+	<xs:complexType 	name="posControlType">
+		<xs:attribute		name="sp"	type="xs:decimal"	use="required"/>
+		<xs:attribute		name="ki"	type="xs:decimal"	use="required"/>
+		<xs:attribute		name="kp"	type="xs:decimal"	use="required"/>
+	</xs:complexType>
+	
+	<!-- Impedance Controller Definition -->
+	<xs:complexType 	name="impControlType">
+		<xs:attribute		name="sp"	type="xs:decimal"	use="required"/>
+		<xs:attribute		name="k"	type="xs:decimal"	use="required"/>
+		<xs:attribute		name="b"	type="xs:decimal"	use="required"/>
+		<xs:attribute		name="ki"	type="xs:decimal"/>
+		<xs:attribute		name="kp"	type="xs:decimal"/>
+	</xs:complexType>
+	
+</xs:schema> 

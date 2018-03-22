@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+
+<xs:schema	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="https://www.w3schools.com"
+			xmlns="https://www.w3schools.com"
+			elementFormDefault="qualified">
+	
+	<xs:include schemaLocation="ricnuplan_include.xsd"/>
+	
+	
+	<!--============================================================-->
+	<!--                 Transition Definitions                     -->
+	<!--============================================================-->
+	
+	<xs:complexType 	name="transitionsType">
+		<xs:sequence>
+			<xs:element			name="transition"		type="transitionType"		minOccurs="1"	maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- Transition Definition -->
+	<xs:complexType 	name="transitionType">
+		<xs:complexContent>
+			<xs:extension		base="idType">
+				<xs:sequence>
+					<xs:element			name="prev_state"		type="idType"			minOccurs="0"	maxOccurs="1"/>
+					<xs:element			name="next_state"		type="idType"			minOccurs="1"	maxOccurs="1"/>
+					<xs:element			name="event"			type="eventType" 		minOccurs="1"	maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<!-- Event Type -->
+	<xs:complexType		name="eventType">
+		<xs:attribute	name="channel"	type="eventChanType"/>
+		<xs:attribute	name="function"	type="eventFuncType"/>
+		<xs:attribute	name="value"	type="eventValType"/>
+	</xs:complexType>
+	
+	
+	<!--============================================================-->
+	<!--                    Restricted Types                        -->
+	<!--============================================================-->
+	<xs:simpleType name="eventChanType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="ax|ay|az|gx|gy|gz|em|ej|cm|st|fx|fy|fz|mx|my|mz"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="eventFuncType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="mr|ls|eq|me|le"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="eventValType">
+		<xs:restriction base="xs:decimal">
+		</xs:restriction>
+	</xs:simpleType>
+	
+</xs:schema> 
